@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>E-Challan View</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="subpage">
+
+		<!-- Header -->
+        <header id="header" class="alt">
+            <div class="logo"><a href="index.html">DSNM <span>E-Challan Website</span></a></div>
+            <a href="#menu">Menu</a>
+        </header>
+    
+        <!-- Nav -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="generic.html">Statistics</a></li>
+                <li><a href="issues.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+		<!-- Main -->
+			<div id="main">
+				<section class="wrapper style1">
+					<div class="inner">
+
+						<header class="align-center">
+							<h1>Welcome, User!</h1>
+							<p>Here's a list view of your pending challans</p>
+						</header>
+        
+        
+            <h3>Challan View</h3>
+            <p>A consolidated view of all your pending challans to be paid to avoid penalty. Every challan must be paid within 30 days of it being issued to the user oherwise a penalty of 50 INR is added to the pending challan. Exciting new coupons and giveaways for quick challan payment. <strong>PAY YOUR E-CHALLAN WITHIN 48 HOURS AND GET AN ASSURED VOUCHER WORTH 50 FROM US</strong></p>
+           
+            <div class="main-list" id="list_div">
+                <div class="list-item">
+                    <h3>Challan List</h3>
+                </div>
+            </div>
+
+            <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js"></script>
+            <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+            <script>
+                // Initialize the FirebaseUI Widget using Firebase.
+        
+                var firebaseConfig =
+                {
+                    apiKey: "AIzaSyDjZQzAc7EcgaiqvnXKGNaAQ2HNGLRNZMA",
+                    authDomain: "fir-temp-ed4e5.firebaseapp.com",
+                    databaseURL: "https://fir-temp-ed4e5.firebaseio.com",
+                    projectId: "fir-temp-ed4e5",
+                    storageBucket: "fir-temp-ed4e5.appspot.com",
+                    messagingSenderId: "484451362232",
+                    appId: "1:484451362232:web:038d32e19708eea2c15b4d",
+                    measurementId: "G-85DCWT20RP"
+                };
+        
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+            </script>
+                <script src="index1.js"></script>
+            </script>
+    </body>
+    </html>

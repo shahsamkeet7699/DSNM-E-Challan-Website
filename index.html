@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>Welcome :: User</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+	
+	<!-- <script src="/__/firebase/init.js"></script> -->
+
+
+
+</head>
+<style>
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	/* Full-width input fields */
+	input[type=text],
+	input[type=password] {
+		width: 50%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+	}
+
+	/* Set a style for all buttons */
+	button {
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
+
+	button:hover {
+		opacity: 0.8;
+	}
+
+	/* Extra styles for the cancel button */
+	.cancelbtn {
+		width: auto;
+		padding: 10px 18px;
+		background-color: #f44336;
+	}
+
+	/* Center the image and position the close button */
+	.imgcontainer {
+		text-align: center;
+		margin: 24px 0 12px 0;
+		position: relative;
+	}
+
+	img.avatar {
+		width: 20%;
+		border-radius: 50%;
+	}
+
+	.container {
+		padding: 8px;
+	}
+
+	span.psw {
+		float: right;
+		padding-top: 16px;
+	}
+
+	/* The Modal (background) */
+	.modal {
+		display: none;
+		/* Hidden by default */
+		position: fixed;
+		/* Stay in place */
+		z-index: 1;
+		/* Sit on top */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* Full width */
+		height: max-content;
+		/* Full height */
+		overflow: visible;
+		/* Enable scroll if needed */
+		background-color: rgb(0, 0, 0);
+		/* Fallback color */
+		background-color: rgba(0, 0, 0, 0.4);
+		/* Black w/ opacity */
+		/* padding-top: 60px; */
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+		background-color: #fefefe;
+		margin: 5% auto 15% auto;
+		/* 5% from the top, 15% from the bottom and centered */
+		border: 1px solid #888;
+		width: 50%;
+		/* Could be more or less, depending on screen size */
+	}
+
+	/* The Close Button (x) */
+	.close {
+		position: absolute;
+		right: 25px;
+		top: 0;
+		color: #000;
+		font-size: 35px;
+		font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: red;
+		cursor: pointer;
+	}
+
+	/* Add Zoom Animation */
+	.animate {
+		-webkit-animation: animatezoom 0.6s;
+		animation: animatezoom 0.6s
+	}
+
+	@-webkit-keyframes animatezoom {
+		from {
+			-webkit-transform: scale(0)
+		}
+
+		to {
+			-webkit-transform: scale(1)
+		}
+	}
+
+	@keyframes animatezoom {
+		from {
+			transform: scale(0)
+		}
+
+		to {
+			transform: scale(1)
+		}
+	}
+
+	/* Change styles for span and cancel button on extra small screens */
+	@media screen and (max-width: 300px) {
+		span.psw {
+			display: block;
+			float: none;
+		}
+
+		.cancelbtn {
+			width: 100%;
+		}
+	}
+</style>
+
+<body>
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<div class="logo"><a href="index.html">DSNM <span>E-Challan Website</span></a></div>
+		<a href="#menu">Menu</a>
+	</header>
+
+	<!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="generic.html">Statistics</a></li>
+			<li><a href="issues.html">Contact Us</a></li>
+		</ul>
+	</nav>
+
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<header>
+				<h1>DSNM E-Challan</h1>
+				<p>One-stop portal to track, analyze and pay your overspeeding dues</p>
+			</header>
+			<button onclick="document.getElementById('id01').style.display='block'" class="button big scrolly"
+				class="form-control" style="width:auto;">Login</button>
+
+			<div id="id01" class="modal">
+
+				<!-- action="C:\Users\Hemantbhai\Desktop\OOSE+PL\elements.html" -->
+				<form class="modal-content animate" method="post">
+					<div class="imgcontainer">
+						<span onclick="document.getElementById('id01').style.display='none'" class="close"
+							title="Close Modal">&times;</span>
+						<img src="images\img_avatar2.png" alt="Avatar" class="avatar">
+					</div>
+
+					<!-- <div class="container"> -->
+					<!-- <label for="uname"><b>Username</b></label>
+      <input id = "uname" type="text" placeholder="Enter Username" name="uname" required><br>
+
+      <label for="psw"><b>Password</b></label>
+      <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit">Login</button>
+      <label>
+        <input id="submit" type="checkbox" checked="checked" name="remember"> Remember me
+	  </label> -->
+					<!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+					<!-- <h3>Welcome to My Awesome App</h3> -->
+					<div id="firebaseui-auth-container"></div>
+					<div id="loader">Loading...</div>
+			</div>
+
+			<!-- <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="location.href='index.html'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+	</div> -->
+			</form>
+		</div>
+
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
+		</div>
+	</section>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Section -->
+		<section class="wrapper style1">
+			<div class="inner">
+				<!-- 2 Columns -->
+				<h3>A <Strong>Fast</Strong> drive could be your <Strong>Last</strong> drive</h3>
+				<p><span class="image left"><img src="images/1.jpg" alt="" /></span>Mumbai Traffic Police is the primary
+					traffic regulatory agency in the city of Mumbai and is dedicated to preventing and controlling
+					traffic violations and providing smooth flow of traffic to the citizens.<br><br> However, It is not
+					possible for the 3,500 active policemen to regulate the flow of traffic everywhere. This is where
+					the Driver Safety & Navigation Management App, comes into picture. DSNM tracks each users trips for
+					cases off overspeeding wherein it issues short warnings (3) to the user. If the driver continues, an
+					E-challan is auto generated and the details are passed to the to user's account on this
+					website.<br><br> Electronic Challan System will be notified on the spot and is relayed to the user's
+					account. The overspeeding ticket issued for a violation of MV Act and/or Traffic regulation rules,
+					is available online for the user to pay the dues.</p>
+			</div>
+	</div>
+	</section>
+
+	<!-- Section -->
+	<section class="wrapper style2">
+		<div class="inner">
+			<h3>Know <strong>Rule</strong>, No <strong>Pain</strong><br>
+				No<Strong> Rule</strong>, Know<strong> Pain</strong></h3>
+			<br>
+			<p><span class="image right"><img src="images/2.jpg" alt="" /></span>India ranks 1st in the number of road
+				accident deaths across the 199 counttries reported in the World Road Statistics, 2019. As per WHO Global
+				Report on Road Safetty 2019, India accounts for almost 11% of accident related deaths worldwide.<br><br>
+				With overspeeding contributing to more than 4,67,044 road accidents have been reported by states & UTs
+				in 2019, claiming 1,51,417 lives & causing injuries to 4,69,418 persons. Overspeeding accounted for
+				64.4% of he persons killed.<br><br>Although, Punishment for racing and speeding is imprisonment for up
+				to 1 month and/or fine up to Rs. 500 for the first offence and imprisonment up to 1 month and/or fine up
+				to Rs. 10000 for the second offence, as mentioned earlier, it becomes difficult to manage and control
+				the large number of drivers who overspeed considering the limited manpower alloted.<br><br> Road traffic
+				crashes are an epidemic in India. It is not only a public health issue, but an economic one: The country
+				loses $58 billion, or 3% of its GDP, every year due to road traffic crashes. The benefits of improving
+				road safety go far beyond increasing the overall quality of life for India’s citizens and will
+				undoubtedly save many lives. </p>
+			<br> <a href="generic.html" class="button">Learn More</a>
+		</div>
+	</section>
+
+	<!-- Section -->
+	<section class="wrapper style1">
+		<div class="inner">
+			<header class="align-center">
+				<h2>Effecient ways to prevent Overspeeding</h2>
+				<subtext>"Anyone driving slower than you is an idiot, and anyone going faster than you is a maniac."
+				</subtext>
+			</header>
+			<!-- <div class="flex flex-3">
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/3.jpg" alt="" />
+									</div>
+									<h4>Road safety & infrastructure planners</h4>
+									<p>Develop a framework for planning, granting permits & setting priorities for road transport sector. Increased use of public transport not only improves accessibility, but reduces vehicle travel, thereby improving road safety.</p>
+									<a href="#" class="button">Learn More</a>
+								</div>
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/4.jpg" alt="" />
+									</div>
+									<h4>Road safety & vehicle manufacturers</h4>
+									<p>Manufacturers to recall motor vehicles if they could potentially damage the health and safety of road users, whether because of design flaws, emissions or other features & levy penalties in case of violations.</p>
+									<a href="#" class="button">Learn More</a>
+								</div>
+								<div class="col align-center">
+									<div class="image round fit">
+										<img src="images/5.jpg" alt="" />
+									</div>
+									<h4>Road safety & road users</h4>
+									<p>Enhanced penalties will act as a deterrent & hopefully improve safety. Accident Fund that provides compulsory insurance to all road users in India, from drivers to bicyclists to pedestrians which would pay for treatment of victims, compensate victims’ relatives & more.  </p>
+									<a href="#" class="button">Learn More</a>
+								</div>
+							</div>
+						</div> -->
+			<div class="row">
+				<div class="4u 12u$(medium)">
+					<h3>Road safety</h3>
+					<img src="images/3.jpg" alt="" height="300" width="385" />
+					<p>Stick to a single lane. In a 2 lane system, stick to the right to accelerate and on the left to
+						turn or stop.<br> Follow all traffic norms religiously to avoid accidents.</p>
+				</div>
+				<div class="4u 12u$(medium)">
+					<h3>Vehicle maintenance</h3>
+					<img src="images/4.jpg" alt="" height="300" width="385" />
+					<p>Proper & regular servicing of any vehicle is crucial in determining its future life & current
+						load on the vehicle. </p>
+				</div>
+				<div class="4u$ 12u$(medium)">
+					<h3>Car Pool</h3>
+					<img src="images/5.jpg" alt="" height="300" width="385" />
+					<p>One of the most efficient ways to limit overspeeding & limiting spending on gas money.</p>
+				</div>
+	</section>
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="copyright">
+			<ul class="icons">
+				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+			</ul>
+			<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a
+					href="https://unsplash.com">Unsplash</a>.</p>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+
+	<script src="C:\Users\Hemantbhai\Desktop\OOSE+PL\assets\js\index.js"></script>
+	<script>
+		// Initialize the FirebaseUI Widget using Firebase.
+
+		var firebaseConfig =
+		{
+			apiKey: "AIzaSyDjZQzAc7EcgaiqvnXKGNaAQ2HNGLRNZMA",
+			authDomain: "fir-temp-ed4e5.firebaseapp.com",
+			databaseURL: "https://fir-temp-ed4e5.firebaseio.com",
+			projectId: "fir-temp-ed4e5",
+			storageBucket: "fir-temp-ed4e5.appspot.com",
+			messagingSenderId: "484451362232",
+			appId: "1:484451362232:web:038d32e19708eea2c15b4d",
+			measurementId: "G-85DCWT20RP"
+		};
+
+		// Initialize Firebase
+		// firebase.initializeApp(firebaseConfig);
+
+		var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+		var uiConfig = {
+			callbacks: {
+				signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+					// User successfully signed in.
+					// Return type determines whether we continue the redirect automatically
+					// or whether we leave that to developer to handle.
+					return true;
+				},
+				uiShown: function () {
+					// The widget is rendered.
+					// Hide the loader.
+					document.getElementById('loader').style.display = 'none';
+				}
+			},
+			// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+			signInFlow: 'popup',
+			signInSuccessUrl: 'elements1.html',
+			signInOptions: [
+				// Leave the lines as is for the providers you want to offer your users.
+
+				firebase.auth.EmailAuthProvider.PROVIDER_ID,
+
+
+			],
+			// Terms of service url.
+			//   tosUrl: '<your-tos-url>',
+			// Privacy policy url.
+			//   privacyPolicyUrl: '<your-privacy-policy-url>'
+		};// The start method will wait until the DOM is loaded.
+		ui.start('#firebaseui-auth-container', uiConfig);
+
+			// firebase.auth().onAuthStageChanged(function(user)
+			// {
+			// if(user)
+			// {
+			// 	window.location.href = "C:\Users\Hemantbhai\Desktop\OOSE+PL\elements.html";
+			// }
+			// });
+	</script>
+</body>
+
+</html>
